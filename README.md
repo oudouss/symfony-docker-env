@@ -38,14 +38,25 @@ If you have edited  the Dockerfile files or  added some config  to docker-compos
 docker-compose up -d --force-recreate
 ```
 
-## Creating the Symfony Application:
+## The Symfony Application:
 
-Run the following command to execute commands in the container: 
+
+Run the following command to execute commands in the server container: 
 ```
 docker exec -it server bash
 ```
 
-Once in the server container Run the following commands to build your app in codebase directory. Run this if you are building a traditional web application:
+Once in the server container /var/www/html directory first Remove the .gitkeep file  
+
+```
+rm .gitkeep
+```
+
+After that run the following commands to build your Symfony Project in codebase directory:
+
+### Setting up a new Symfony Project:
+
+Run this if you are building a traditional web application:
 ```
 composer create-project symfony/skeleton:"^5.4" .
 composer require webapp
@@ -64,15 +75,11 @@ OR
 symfony new . --version=5.4
 ```
 
-## Setting up an Existing Symfony Project:
+### Setting up an Existing Symfony Project:
 
 Clone a symfony project into codebase:
 ```
-
-docker exec -it server bash
-
 git clone https://github.com/oudouss/symfony-docker-webapp-5-4.git .
-
 composer install
 ```
 
