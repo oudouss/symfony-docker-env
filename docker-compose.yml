@@ -37,6 +37,8 @@ services:
 
     db_server:
         image: '${DB_SERVER}:${DB_SERVER_VERSION}'
+        # Uncomment if using mariadb or mysql 
+        command: --default-authentication-plugin=mysql_native_password
         container_name: 'db_server'
         ports:
             - '${DB_PORT_OUTSIDE}:${DB_PORT_INSIDE}'

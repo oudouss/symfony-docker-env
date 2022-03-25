@@ -10,6 +10,10 @@ COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
 RUN apt update 
 RUN apt install nano
 
+# install the symfony cli
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+
 # install the PHP APCu extension
 RUN mkdir -p /usr/src/php/ext/apcu && curl -fsSL https://pecl.php.net/get/apcu | tar xvz -C "/usr/src/php/ext/apcu" --strip 1 && docker-php-ext-install apcu
 
