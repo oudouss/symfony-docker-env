@@ -1,29 +1,37 @@
 # Symfony Docker Environment
 
-# Introduction
+
+## Introduction
 
 The following steps will help you initiate and install the suitable development environment.
 
-## setting global environment variables
+## Setting global environment variables
 
 You'll probably need to customize your .env file in the root directory containing the docker-compose.yml file
 
 ## Installation
+
 Run the following command to download and build the containers: 
 ```
 docker-compose up -d --build
 ```
+
 ## Stopping all containers
+
 I personnaly use the following command to stop all running containers because I usually use the same ports and some of the containers remain up so i need to stop them before :)
 ```
 docker container stop $(docker container ps -aq)
 ```
+
 ## Starting the env
+
 Please be careful, if you always run docker-compose up -d you may lose all config added to the containers. So i advice to run the following command to prevent recreation : 
 ```
 docker-compose up -d --no-recreate --remove-orphans
 ```
+
 ## Rebuilding after adding a container or a config
+
 If you have edited  the Dockerfile files or  added some config  to docker-compose.yml (networking, ips ...), you need to recreate the container(s)
 
 ```
@@ -31,23 +39,25 @@ docker-compose up -d --force-recreate
 ```
 
 ## Creating the Symfony Application:
+
 Run the following command to execute commands in the container: 
 ```
 docker exec -it server bash
 ```
-Once in the server container Run the following commands to build your app in codebase directory: 
 
-Run this if you are building a traditional web application:
+Once in the server container Run the following commands to build your app in codebase directory. Run this if you are building a traditional web application:
 ```
 composer create-project symfony/skeleton:"^5.4" .
 composer require webapp
 ```
+
 Run this if you are building a microservice, console application or API:
 ```
 composer create-project symfony/skeleton:"^5.4" .
 ```
 
 ## Setting up an Existing Symfony Project:
+
 Clone a symfony project into codebase:
 ```
 cd codebase
@@ -68,6 +78,7 @@ First run this command to create a .env file
 docker exec -it server bash
 composer dump-env dev
 ```
+
 You'll probably need to customize the created .env file in codebase according to your database choice:
 
 ```
@@ -85,12 +96,11 @@ DATABASE_URL='postgresql://${DB_USER}:${DB_PASS}@db_server:${DB_PORT_INSIDE}/${D
 #NOTE: You should replace ( ${DB_USER} , ${DB_PASS} , ${DB_PORT_INSIDE}, ${DB_NAME} , ${DB_SERVER} , ${DB_SERVER_VERSION} , ${DB_CHARSET} ) by their respective values from .env file in the root directory
 
 ```
-## Setting up database connection via docker-compose.yml file:
-Before running this command to start up your containers:
-```
-docker-compose up -d --build
-```
-Make sure to uncomment one of these lines in docker-compose.yml
+
+## Setting up database connection via docker-compose.yml file
+
+Before running (docker-compose up -d --build) command to start up your container, make sure to uncomment one of these lines in docker-compose.yml
+
 ```
 # Uncomment these lines to prioritize it
 #environment:
