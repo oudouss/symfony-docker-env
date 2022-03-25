@@ -49,24 +49,30 @@ Once in the server container Run the following commands to build your app in cod
 ```
 composer create-project symfony/skeleton:"^5.4" .
 composer require webapp
+
+OR
+
+symfony new . --version=5.4 --webapp
 ```
 
 Run this if you are building a microservice, console application or API:
 ```
 composer create-project symfony/skeleton:"^5.4" .
+
+OR
+
+symfony new . --version=5.4
 ```
 
 ## Setting up an Existing Symfony Project:
 
 Clone a symfony project into codebase:
 ```
-cd codebase
-git clone 'your_distant_repo_url' .
-```
 
-Go back to the root directory that contains your docker-compose.yml file then Run the following command to execute commands in the container: 
-```
 docker exec -it server bash
+
+git clone https://github.com/oudouss/symfony-docker-webapp-5-4.git .
+
 composer install
 ```
 
@@ -89,7 +95,7 @@ DATABASE_URL='mysql://${DB_USER}:${DB_PASS}@db_server:${DB_PORT_INSIDE}/${DB_NAM
 #To use mariadb include this line instead:
 DATABASE_URL='mysql://${DB_USER}:${DB_PASS}@db_server:${DB_PORT_INSIDE}/${DB_NAME}?serverVersion=${DB_SERVER}-${DB_SERVER_VERSION}'
 
-#To use mariadb include this line instead:
+#To use postgresql include this line instead:
 DATABASE_URL='postgresql://${DB_USER}:${DB_PASS}@db_server:${DB_PORT_INSIDE}/${DB_NAME}?serverVersion=${DB_SERVER_VERSION}&charset=${DB_CHARSET}'
 
 

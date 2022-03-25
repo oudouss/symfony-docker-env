@@ -45,15 +45,14 @@ services:
         restart: unless-stopped
         environment:
         # Uncomment if using mariadb or mysql 
-            MYSQL_ROOT_PASSWORD:    '${DB_ROOT_PASS}'
+            MYSQL_DATABASE:         '${DB_NAME}'
             MYSQL_USER:             '${DB_USER}'
             MYSQL_PASSWORD:         '${DB_PASS}'
-            MYSQL_DATABASE:         '${DB_NAME}'
+            MYSQL_ROOT_PASSWORD:    '${DB_ROOT_PASS}'
         # Uncomment if using postgres 
+            # POSTGRES_DB:          '${DB_NAME}'
             # POSTGRES_USER:        '${DB_USER}'
             # POSTGRES_PASSWORD:    '${DB_PASS}'
-            # POSTGRES_DB:          '${DB_NAME}'
-            # PGDATA: /var/lib/postgresql/data/pgdata
         volumes:
             - db_data:${DB_VOLUME}
         networks:
