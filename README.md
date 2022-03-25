@@ -46,13 +46,7 @@ Run the following command to execute commands in the server container:
 docker exec -it server bash
 ```
 
-Once in the server container /var/www/html directory first Remove the .gitkeep file  
-
-```
-rm .gitkeep
-```
-
-After that run the following commands to build your Symfony Project in codebase directory:
+Once in the server container /var/www/html directory run the following commands to build your Symfony Project in codebase directory:
 
 ### Setting up a new Symfony Project:
 
